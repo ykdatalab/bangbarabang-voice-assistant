@@ -152,7 +152,7 @@ with st.sidebar:
 left_column, right_column = st.columns([1, 1.3])
 
 with left_column:
-    st.subheader("🎤 방바라방에게 질문하기")
+    st.subheader("🎤 질문하기")
 
     # 브라우저의 마이크로 음성 녹음
     recorded_audio = st.audio_input(

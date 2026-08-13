@@ -6,8 +6,11 @@ import streamlit as st
 from google import genai
 from gtts import gTTS
 
-
-
+# 1. Streamlit 페이지 기본 설정
+st.set_page_config(
+    page_title="소담에게 물어봐!",
+    layout="wide"
+)
 
 # 2. 대화 기록 초기화
 # streamlit은 버튼을 누를 때마다 코드를 다시 실행함으로,
@@ -64,13 +67,13 @@ def ask_gemini(question, model):
 
     # 이전 대화 내용을 하나의 문자열로 정리
     conversation = "\n".join(
-        f"{'사용자' if message['role'] == 'user' else '방바라방'}: "
+        f"{'사용자' if message['role'] == 'user' else '소담'}: "
         f"{message['content']}"
         for message in st.session_state.messages[:-1]
     )
 
     prompt = f"""
-당신은 친절하고 유쾌한 한국어 AI 음성비서 '방바라방'입니다.
+당신은 친절하고 유쾌한 한국어 AI 음성비서 '소담'입니다.
 사용자의 질문에 이해하기 쉬운 한국어로 답변하세요.
 답변은 음성으로 재생되므로 핵심 위주로 자연스럽고 간결하게 말하세요.
 
@@ -107,14 +110,14 @@ def text_to_speech(text):
 
 
 # 7. 제목과 프로그램 설명
-st.title("🎙️ 방바라방에게 물어봐!")
+st.title("🎙️ 소담이에게 물어봐!")
 
 st.caption(
-    "음성으로 질문하면 방바라방이 Gemini를 활용해 "
+    "음성으로 질문하면 소담이 Gemini를 활용해 "
     "질문을 이해하고 음성으로 답변합니다."
 )
 
-with st.expander("방바라방 프로그램에 관하여", expanded=True):
+with st.expander("소담 프로그램에 관하여", expanded=True):
     st.markdown(
         """
         - **사용자 화면(UI):** Streamlit
@@ -127,7 +130,7 @@ with st.expander("방바라방 프로그램에 관하여", expanded=True):
 
 # 8. 사이드바 설정
 with st.sidebar:
-    st.header("⚙️ 방바라방 설정")
+    st.header("⚙️ 소담 설정")
 
     model = st.radio(
         "Gemini 모델 선택",
@@ -168,7 +171,7 @@ with left_column:
         st.audio(recorded_audio)
 
     send_button = st.button(
-        "방바라방에게 질문 보내기",
+        "소담이에게 질문 보내기",
         type="primary",
         use_container_width=True,
         disabled=recorded_audio is None
@@ -176,7 +179,7 @@ with left_column:
 
 
 with right_column:
-    st.subheader("💬 방바라방과의 대화")
+    st.subheader("💬 소담과의 대화")
 
     # session_state에 저장된 이전 질문과 답변 출력
     for message in st.session_state.messages:
@@ -187,7 +190,7 @@ with right_column:
 # 10. 음성 질문 처리
 if send_button and recorded_audio:
     try:
-        with st.spinner("방바라방이 질문을 듣고 답변을 생각하고 있어요..."):
+        with st.spinner("소이 질문을 듣고 답변을 생각하고 있어요..."):
             audio_bytes = recorded_audio.getvalue()
 
             # 1단계: 사용자 음성 → 질문 텍스트

@@ -16,15 +16,18 @@ if "messages" not in st.session_state:
   st.session_state.messages = []
 
 
-# 3. Gemini 클라이언트 생성
-# streamlit cloud의 secrets에서 API키를 불러오기
-try:
-  api_key = st.secrets["GEMINI_API_KEY"]
-  client = genai.Client(api_key = api_key)
+# 3. Gemini API 키 입력 및 클라이언트 생성
+api_key = st.sidebar.text_input(
+    "Gemini API 키를 입력하세요.",
+    type="password"
+)
 
-except KeyError:
-  st.error("Streamlit Secrets에 GEMINI_API_KEY를 등록해주세요.")
-  st.stop()
+if not api_key:
+    st.info("사이드바에 Gemini API 키를 입력해주세요.")
+    st.stop()
+
+client = genai.Client(api_key=api_key)
+
 
 
 # 4. 음성을 텍스트로 변환하는 함수(STT)

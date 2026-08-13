@@ -110,7 +110,7 @@ def text_to_speech(text):
 
 
 # 7. 제목과 프로그램 설명
-st.title("🎙️ 소담이에게 물어봐!")
+st.title("🎙️ 소담에게 물어봐!")
 
 st.caption(
     "음성으로 질문하면 소담이 Gemini를 활용해 "
@@ -154,7 +154,7 @@ with st.sidebar:
         st.rerun()
 
 
-  # 9. 음성 입력 영역과 대화 출력 영역
+# 9. 음성 입력 영역과 대화 출력 영역
 left_column, right_column = st.columns([1, 1.3])
 
 with left_column:
@@ -171,7 +171,7 @@ with left_column:
         st.audio(recorded_audio)
 
     send_button = st.button(
-        "소담이에게 질문 보내기",
+        "소담에게 질문 보내기",
         type="primary",
         use_container_width=True,
         disabled=recorded_audio is None
@@ -190,7 +190,7 @@ with right_column:
 # 10. 음성 질문 처리
 if send_button and recorded_audio:
     try:
-        with st.spinner("소이 질문을 듣고 답변을 생각하고 있어요..."):
+        with st.spinner("소담이 질문을 듣고 답변을 생각하고 있어요..."):
             audio_bytes = recorded_audio.getvalue()
 
             # 1단계: 사용자 음성 → 질문 텍스트

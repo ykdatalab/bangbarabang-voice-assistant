@@ -6,12 +6,7 @@ import streamlit as st
 from google import genai
 from gtts import gTTS
 
-# 1. Streamlit 페이지 기본 설정
-st.set_page_config(
-    page_title = "방바라방에게 물어봐!",
-    page_ion = "🎙️",
-    layout = "wide"
-)
+
 
 
 # 2. 대화 기록 초기화

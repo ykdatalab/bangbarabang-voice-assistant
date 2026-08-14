@@ -1,10 +1,10 @@
+# 프로그램에 필요한 라이브러리와 클래스 불러오기
+import base64                            # 음성 데이터를 문자열 형태로 변환
+from io import BytesIO                   # 음성 파일을 메모리에서 임시 처리
 
-import base64
-from io import BytesIO
-
-import streamlit as st
-from google import genai
-from gtts import gTTS
+import streamlit as st                   # 웹 화면 구성
+from google import genai                 # Gemini API 연결
+from gtts import gTTS                    # 텍스트를 음성으로 변환
 
 # 1. Streamlit 페이지 기본 설정
 st.set_page_config(
